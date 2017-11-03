@@ -8,18 +8,19 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Tạo người dùng mới</div>
+                    <div class="panel-heading">Update người dùng</div>
                     <div class="panel-body">
-                        <form action="{{route('user.store')}}" method="post">
+                        <form action="{{route('user.update',['id'=> $user->id])}}" method="post">
                             {{csrf_field()}}
+                            {{method_field('put')}}
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}" >
                                 <label for="name">Họ và Tên</label>
-                                <input type="name" class="form-control" id="name" name="name" placeholder="name" value="{{old('name')}}">
+                                <input type="name" class="form-control" id="name" name="name" placeholder="name" value="{{$user->name}}">
                                 <span class="help-block">{{ $errors->first('name') }}</span>
                             </div>
                             <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{old('email')}}">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{$user->email}}">
                                 <span class="help-block">{{ $errors->first('email') }}</span>
                             </div>
                             <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
@@ -30,10 +31,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="password_confirmation">Re-password</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Password">
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Re-Password">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
 
 

@@ -9,7 +9,6 @@
                 </div>
             </div>
         </div>
-
                 <div class="panel panel-default">
                     <div class="panel-heading">Danh sách người dùng</div>
                     <div class="panel-body">
@@ -37,24 +36,23 @@
                                         <td>{{ $user ->created_at }}</td>
                                         <td>{{ $user ->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('user.edit',['id'=> $user->id]) }}"
+                                            <a href="{{ route('user.show',['id'=> $user->id]) }}"
                                                class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('user.delete',['id'=> $user->id]) }}"
+                                            <a href="{{ route('user.delete',['id'=> $user->id]) }}" onclick='event.preventDefault(); document.getElementById("{{'delete-id-'.$user->id}}").submit();'
                                                class="btn btn-danger">
                                                 Delete
                                             </a>
+                                            <form action="{{route('user.delete',['id'=>$user->id])}}" id="{{ 'delete-id-'.$user->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('delete') }}
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
                             @endif
-
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
                 <div style="text-align: center">
                     {{ $users->links() }}
